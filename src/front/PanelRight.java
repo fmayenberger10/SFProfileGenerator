@@ -34,7 +34,6 @@ public class PanelRight extends JPanel {
 		acceptAll = new JButton("Accept all");
 		cancel = new JButton("Cancel");
 		if(enabled) {
-			System.out.println("numero de perfiles: " + profilePanes.size());
 			//acceptAll.setEnabled(true);
 			//cancel.setEnabled(true);
 			

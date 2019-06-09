@@ -61,7 +61,7 @@ public class GUIFrame extends JFrame {
 	}
 	
 	private void paint(boolean leftEnabled, boolean rightEnabled) {
-
+		
 		root = new JPanel(new BorderLayout());
 		root.setPreferredSize(new Dimension(1300, 800));
 		
@@ -70,7 +70,6 @@ public class GUIFrame extends JFrame {
 		
 		root.add(leftPane, BorderLayout.LINE_START);
 		root.add(rightPane);
-		
 		this.add(root);
 		this.pack();
 	}
