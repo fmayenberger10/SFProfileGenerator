@@ -22,7 +22,6 @@ public class PanelRight extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JPanel outp;
 	private JPanel rightJButtons;
-	private JScrollPane profilePane;
 	public JButton cancel;
 	public JButton acceptAll;
 	private JScrollPane spOut;
@@ -85,7 +84,6 @@ public class PanelRight extends JPanel {
 		spOut = new JScrollPane(profiles, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		spOut.setBorder(BorderFactory.createEmptyBorder());
 		spOut.setViewportBorder(null);
-		profilePane = spOut;
 		return spOut;
 	}
 	

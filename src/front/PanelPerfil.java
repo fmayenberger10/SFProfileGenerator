@@ -1,7 +1,5 @@
 package front;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -10,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.Set;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -63,6 +60,7 @@ public class PanelPerfil extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				String nme = perfil.name + ".profile";
 				perfil.acceptAll();
+				@SuppressWarnings("unused")
 				boolean genero = perfil.generateFile(rutaNuevos + nme);
 			}
 		});

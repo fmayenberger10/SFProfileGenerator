@@ -1,7 +1,6 @@
 package front;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,10 +38,10 @@ public class GUIFrame extends JFrame {
 		profilePanes = new ArrayList<>();
 		listaPerfiles = new DefaultListModel<>();
 		perfiles = new JList<>(listaPerfiles);
-		listaPerfiles.addElement("Admin");
+		/*listaPerfiles.addElement("Admin");
 		listaPerfiles.addElement("Junior GEAMM");
 		listaPerfiles.addElement("Pleno GEAMM");
-		listaPerfiles.addElement("Gerente GEAMM");
+		listaPerfiles.addElement("Gerente GEAMM");*/
 		perfiles.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		perfiles.setPreferredSize(new Dimension(440, 600));
 		this.setTitle("SF Profile Generator");
@@ -98,6 +97,7 @@ public class GUIFrame extends JFrame {
 					for(Profile prof : profiles) {
 						String nme = prof.name + ".profile";
 						prof.acceptAll();
+						@SuppressWarnings("unused")
 						boolean genero = prof.generateFile(leftPane.pNuevos.ruta + nme);
 					}
 					profilePanes = new ArrayList<>();

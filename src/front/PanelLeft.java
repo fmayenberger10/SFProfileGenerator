@@ -1,6 +1,5 @@
 package front;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
@@ -11,7 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
 
 public class PanelLeft extends JPanel {
 	
@@ -34,9 +32,12 @@ public class PanelLeft extends JPanel {
 		this.setPreferredSize(new Dimension(500, 800));
 		this.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 		
-		pOrigen = new PanelRuta("Origin folder", root, "/home/franz/Documents/Sulamerica/salesforce-ic/profiles/");
+		/*pOrigen = new PanelRuta("Origin folder", root, "/home/franz/Documents/Sulamerica/salesforce-ic/profiles/");
 		pCarga = new PanelRuta("Upload folder", root, "/home/franz/Documents/Sulamerica/profiles/profiles commit 1 vfin/");
-		pNuevos = new PanelRuta("Generated folder", root, "/home/franz/Documents/Sulamerica/profiles/nuevos/");
+		pNuevos = new PanelRuta("Generated folder", root, "/home/franz/Documents/Sulamerica/profiles/nuevos/");*/
+		pOrigen = new PanelRuta("Origin folder", root, "");
+		pCarga = new PanelRuta("Upload folder", root, "");
+		pNuevos = new PanelRuta("Generated folder", root, "");
 		this.add(pOrigen);
 		this.add(pCarga);
 		this.add(pNuevos);
