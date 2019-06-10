@@ -22,8 +22,9 @@ public class Profile {
 	private LinkedHashMap<String, LinkedHashMap<String, Boolean>> mapaTagsCambiosAceptados;
 	public String name;
 	private Queue<String> qOtros;
-	public final int OLD = 1;
-	public final int NEW = 2;
+	public static final int OLD = 1;
+	public static final int NEW = 2;
+	public static final int CHANGES = 3;
 	
 	public Profile(String name,
 			LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, String>>> mapaTagsOrig, 
@@ -97,24 +98,30 @@ public class Profile {
 		return keys;
 	}
 	
-	public ArrayList<String> getChanges() {
-		ArrayList<String> changes = new ArrayList<>();
+	public LinkedHashMap<String, ArrayList<String>> getChanges() {
+		LinkedHashMap<String, ArrayList<String>> changes = new LinkedHashMap<>();
 		for(String tipo : mapaTagsCambios.keySet()) {
 			for(String nombre : mapaTagsCambios.get(tipo).keySet()) {
 				if(mapaTagsOrig.get(tipo).get(nombre) != null) {
-					changes.add(mapaTagsOrig.get(tipo).get(nombre) + " -> \n\t" + mapaTagsCarga.get(tipo).get(nombre));
+					if(!changes.containsKey(tipo)) {
+						changes.put(tipo, new ArrayList<>());
+					}
+					changes.get(tipo).add(nombre);
 				}
 			}
 		}
 		return changes;
 	}
 	
-	public ArrayList<String> getInserts() {
-		ArrayList<String> changes = new ArrayList<>();
+	public LinkedHashMap<String, ArrayList<String>> getInserts() {
+		LinkedHashMap<String, ArrayList<String>> changes = new LinkedHashMap<>();
 		for(String tipo : mapaTagsCambios.keySet()) {
 			for(String nombre : mapaTagsCambios.get(tipo).keySet()) {
 				if(mapaTagsOrig.get(tipo).get(nombre) == null) {
-					changes.add("" + mapaTagsCarga.get(tipo).get(nombre));
+					if(!changes.containsKey(tipo)) {
+						changes.put(tipo, new ArrayList<>());
+					}
+					changes.get(tipo).add(nombre);
 				}
 			}
 		}

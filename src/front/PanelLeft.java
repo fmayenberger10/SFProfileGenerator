@@ -1,5 +1,6 @@
 package front;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
@@ -43,10 +44,11 @@ public class PanelLeft extends JPanel {
 		sp = new JScrollPane(perfiles, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		sp.setPreferredSize(new Dimension(460, 450));
 		sp.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createTitledBorder("Profiles"), BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-
+		//sp.setBackground(new Color(150,150,150));
+		
 		leftJButtons = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		leftJButtons.setMaximumSize(new Dimension(500, 100));
-
+		
 		remove = new JButton("Remove selected");
 		add = new JButton("Add profile");
 		start = new JButton("Start");

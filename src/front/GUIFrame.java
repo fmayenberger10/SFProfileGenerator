@@ -1,6 +1,7 @@
 package front;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,6 +55,8 @@ public class GUIFrame extends JFrame {
 		//frame.setLocationRelativeTo(null);
 		this.setLocation(300,100);
 		this.setResizable(false);
+		leftPane = new PanelLeft(true, root, listaPerfiles, perfiles);
+		rightPane = new PanelRight(false, profilePanes);
 		
 		paint(true, false);
 		setActionListeners();
@@ -65,9 +68,20 @@ public class GUIFrame extends JFrame {
 		root = new JPanel(new BorderLayout());
 		root.setPreferredSize(new Dimension(1300, 800));
 		
-		leftPane = new PanelLeft(leftEnabled, root, listaPerfiles, perfiles);
-		rightPane = new PanelRight(rightEnabled, profilePanes);
-		
+		rightPane.switchViews(rightEnabled, profilePanes);
+		if(rightEnabled) {
+			leftPane.add.setEnabled(false);
+			leftPane.remove.setEnabled(false);
+			leftPane.start.setEnabled(false);
+			leftPane.pCarga.add.setEnabled(false);
+			leftPane.pOrigen.add.setEnabled(false);
+		} else {
+			leftPane.add.setEnabled(true);
+			leftPane.remove.setEnabled(true);
+			leftPane.start.setEnabled(true);
+			leftPane.pCarga.add.setEnabled(true);
+			leftPane.pOrigen.add.setEnabled(true);
+		}
 		root.add(leftPane, BorderLayout.LINE_START);
 		root.add(rightPane);
 		this.add(root);
