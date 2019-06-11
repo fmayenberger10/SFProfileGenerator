@@ -107,7 +107,6 @@ public class GUIFrame extends JFrame {
 							prof.accept.setEnabled(false);
 						}
 					}
-					//profilePanes = new ArrayList<>();
 					paint(true, true);
 				}
 			}

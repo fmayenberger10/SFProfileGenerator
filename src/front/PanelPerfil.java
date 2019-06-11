@@ -125,7 +125,7 @@ public class PanelPerfil extends JPanel {
 	    c.gridx = 0;
 	    c.gridy = 0;
 	    c.weighty = 1;
-	    c.weightx = 1.3;
+	    c.weightx = 1;
 		c.gridwidth = 1;
 		c.gridheight = 2;
 		c.fill = GridBagConstraints.BOTH;
@@ -175,6 +175,7 @@ public class PanelPerfil extends JPanel {
 			JScrollPane sp = new JScrollPane(new JPanel());
 			detail.add(sp);
 		} else if (perfil.getKeys().contains(selected)) {
+			int num = 0;
 			detail.removeAll();
 			LinkedHashMap<String, LinkedHashMap<String,String>> oldMap = perfil.getType(selected, Profile.OLD);
 			LinkedHashMap<String, LinkedHashMap<String,String>> newMap = perfil.getType(selected, Profile.NEW);
@@ -183,45 +184,63 @@ public class PanelPerfil extends JPanel {
 			tempPane.setLayout(new GridLayout(0,1));
 			tempPane.setBorder(BorderFactory.createEmptyBorder(0, (int)(5*GUIFrame.SCALE), 0, 0));
 			for(int i = 0; i < node.getChildCount(); i++) {
-				JLabel nombre = new JLabel(node.getChildAt(i).toString());
+				JLabel nombre = new JLabel();
+				if(node.toString().equals("layoutAssignments")) {
+					String[] partes = node.getChildAt(i).toString().split("\\|");
+					if(partes.length == 4) {
+						tempPane.add(new JLabel(partes[1]));
+						num++;
+						nombre.setText(partes[3]);
+					} else {
+						nombre.setText(partes[1]);
+					}
+				} else {
+					nombre.setText(node.getChildAt(i).toString());
+				}
 				tempPane.add(nombre);
-				JPanel vals = new JPanel(new FlowLayout(FlowLayout.CENTER));
+				num++;
 				if(isInsert) {
 					for(String name : newMap.get(node.getChildAt(i).toString()).keySet()) {
+						JPanel vals = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 						if(!newMap.get(node.getChildAt(i).toString()).get(name).equals(node.getChildAt(i).toString())) {
 							JLabel tag = new JLabel(name);
 							JTextField newVal = new JTextField(newMap.get(node.getChildAt(i).toString()).get(name));
 					    	newVal.setEditable(false);
-							newVal.setPreferredSize(new Dimension((int)(230*GUIFrame.SCALE),(int)(30*GUIFrame.SCALE)));
+							newVal.setPreferredSize(new Dimension((int)(280*GUIFrame.SCALE),(int)(30*GUIFrame.SCALE)));
 							vals.add(tag);
 							vals.add(newVal);
+							tempPane.add(vals);
+							num++;
 						}
 					}
 				} else {
 					for(String name : oldMap.get(node.getChildAt(i).toString()).keySet()) {
+						JPanel vals = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 						if(!oldMap.get(node.getChildAt(i).toString()).get(name).equals(node.getChildAt(i).toString())) {
 							JLabel tag = new JLabel(name);
 							JTextField oldVal = new JTextField(oldMap.get(node.getChildAt(i).toString()).get(name));
 					    	oldVal.setEditable(false);
-					    	oldVal.setPreferredSize(new Dimension((int)(125*GUIFrame.SCALE),(int)(30*GUIFrame.SCALE)));
+					    	oldVal.setPreferredSize(new Dimension((int)(120*GUIFrame.SCALE),(int)(30*GUIFrame.SCALE)));
 							JTextField newVal = new JTextField(newMap.get(node.getChildAt(i).toString()).get(name));
 					    	newVal.setEditable(false);
-					    	newVal.setPreferredSize(new Dimension((int)(125*GUIFrame.SCALE),(int)(30*GUIFrame.SCALE)));
+					    	newVal.setPreferredSize(new Dimension((int)(120*GUIFrame.SCALE),(int)(30*GUIFrame.SCALE)));
 							vals.add(tag);
 							vals.add(oldVal);
 							vals.add(new JLabel("->"));
 							vals.add(newVal);
+							tempPane.add(vals);
+							num++;
 						}
 					}
 				}
-				tempPane.add(vals);
 			}
 			JScrollPane sp = new JScrollPane(tempPane, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 			detail.add(sp);
-			if(node.getChildCount()*100 < minSize-100) {
-				detail.add(Box.createVerticalStrut((int)(minSize-100-(node.getChildCount()*80*GUIFrame.SCALE))));
+			if(num*50 < minSize-100) {
+				detail.add(Box.createVerticalStrut((int)(minSize-100-(num*50*GUIFrame.SCALE))));
 			}
 		} else {
+			int num = 0;
 			detail.removeAll();
 			LinkedHashMap<String, String> oldVals = perfil.getTag(parent, selected, Profile.OLD);
 			LinkedHashMap<String, String> newVals = perfil.getTag(parent, selected, Profile.NEW);
@@ -231,13 +250,13 @@ public class PanelPerfil extends JPanel {
 			for(String tag: newVals.keySet()) {
 				if(!newVals.get(tag).equals(selected)) {
 					boolean isInsert = oldVals == null ? true : false;
-					JPanel vals = new JPanel(new FlowLayout(FlowLayout.CENTER));
+					JPanel vals = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 			    	JLabel name = new JLabel(tag);
 			    	vals.add(name);
 					if(isInsert) {
 				    	JTextField newVal = new JTextField(newVals.get(tag));
 				    	newVal.setEditable(false);
-						newVal.setPreferredSize(new Dimension((int)(230*GUIFrame.SCALE),(int)(30*GUIFrame.SCALE)));
+						newVal.setPreferredSize(new Dimension((int)(280*GUIFrame.SCALE),(int)(30*GUIFrame.SCALE)));
 				    	vals.add(newVal);
 					} else {
 						JTextField oldVal = new JTextField(oldVals.get(tag));
@@ -251,10 +270,14 @@ public class PanelPerfil extends JPanel {
 				    	vals.add(newVal);
 					}
 			    	tempPane.add(vals);
+			    	num++;
 				}
 			}
 			JScrollPane sp = new JScrollPane(tempPane, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 			detail.add(sp);
+			if(num*50 < minSize-100) {
+				detail.add(Box.createVerticalStrut((int)(minSize-100-(num*50*GUIFrame.SCALE))));
+			}
 		}
 	}
 }
