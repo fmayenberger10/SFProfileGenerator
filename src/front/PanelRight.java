@@ -37,19 +37,19 @@ public class PanelRight extends JPanel {
 		JPanel instructions = new JPanel();
 		instructions.setLayout(new BoxLayout(instructions, BoxLayout.PAGE_AXIS));
 		instructions.setBorder(BorderFactory.createEmptyBorder((int)(40*GUIFrame.SCALE),(int)(20*GUIFrame.SCALE),(int)(20*GUIFrame.SCALE),(int)(20*GUIFrame.SCALE)));
-		JLabel ins1 = new JLabel("<-- Select folder with profiles to be updated");
+		JLabel ins1 = new JLabel("<- Select folder with profiles to be updated");
 		instructions.add(ins1);
 		instructions.add(Box.createVerticalStrut((int)(85*GUIFrame.SCALE)));
-		JLabel ins2 = new JLabel("<-- Select folder with updated profiles");
+		JLabel ins2 = new JLabel("<- Select folder with updated profiles");
 		instructions.add(ins2);
 		instructions.add(Box.createVerticalStrut((int)(85*GUIFrame.SCALE)));
-		JLabel ins3 = new JLabel("<-- Select folder to store generated profiles");
+		JLabel ins3 = new JLabel("<- Select folder to store generated profiles");
 		instructions.add(ins3);
 		instructions.add(Box.createVerticalStrut((int)(75*GUIFrame.SCALE)));
-		JLabel ins4 = new JLabel("<-- Insert profile names without \".profile\" (ex. Admin)");
+		JLabel ins4 = new JLabel("<- Insert profile names without \".profile\" (ex. Admin)");
 		instructions.add(ins4);
 		instructions.add(Box.createVerticalStrut((int)(310*GUIFrame.SCALE)));
-		JLabel ins5 = new JLabel("<-- Start!");
+		JLabel ins5 = new JLabel("<- Start!");
 		instructions.add(ins5);
 		outp.add(instructions);
 		if(profilePanes.size() != 0) {
@@ -76,6 +76,9 @@ public class PanelRight extends JPanel {
 		for(PanelPerfil pane : profilePanes) {
 			height += pane.getHeight();
 			profiles.add(pane);
+		}
+		if(height < 700*GUIFrame.SCALE) {
+			profiles.add(Box.createVerticalStrut((int)(700*GUIFrame.SCALE)-height));
 		}
 		profiles.setPreferredSize(new Dimension((int)(400*GUIFrame.SCALE), height));
 		spOut = new JScrollPane(profiles, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);

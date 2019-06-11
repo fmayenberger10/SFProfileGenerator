@@ -57,12 +57,12 @@ public class GUIFrame extends JFrame {
 			e1.printStackTrace();
 		}
 		this.setLocation((int)(300*SCALE),(int)(100*SCALE));
-		this.setResizable(false);
 		leftPane = new PanelLeft(true, root, listaPerfiles, perfiles);
 		rightPane = new PanelRight(false, profilePanes);
 		
 		paint(true, false);
 		setActionListeners();
+		this.setResizable(false);
 		this.setVisible(true);
 	}
 	

@@ -114,18 +114,19 @@ public class PanelPerfil extends JPanel {
 	            
 	        }
 	    });
-    	this.setMaximumSize(new Dimension((int)(750*GUIFrame.SCALE), (int)(800*GUIFrame.SCALE)));
 	    JScrollPane treeView = new JScrollPane(cambios);
 	    minSize = (int)(((cambios.getRowCount() * 25)+50)*GUIFrame.SCALE);
+	    treeView.setMaximumSize(new Dimension((int)(600*GUIFrame.SCALE), (int)(((cambios.getRowCount() * 25)+50)*GUIFrame.SCALE)));
 	    if(minSize < 200) minSize = 200;
 	    if(cambios.getRowCount() < 4) minSize = 110;
 	    this.setMinimumSize(new Dimension((int)(100*GUIFrame.SCALE), (int)(minSize*GUIFrame.SCALE)));
+    	this.setMaximumSize(new Dimension((int)(750*GUIFrame.SCALE), (int)(minSize*GUIFrame.SCALE)));
 	    c.gridx = 0;
 	    c.gridy = 0;
 	    c.weighty = 1;
 	    c.weightx = 1.5;
 		c.gridwidth = 1;
-		c.gridheight = 3;
+		c.gridheight = 2;
 		c.fill = GridBagConstraints.BOTH;
 		c.anchor = GridBagConstraints.NORTHWEST;
 	    this.add(treeView, c);
@@ -141,7 +142,7 @@ public class PanelPerfil extends JPanel {
 	    this.add(detail, c);
 
 		c.gridx = 1;
-		c.gridy = 2;
+		c.gridy = 1;
 	    c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.SOUTHEAST;
 		c.gridwidth = 1;
@@ -151,7 +152,7 @@ public class PanelPerfil extends JPanel {
 		this.add(new JPanel(), c);
 
 		c.gridx = 2;
-		c.gridy = 2;
+		c.gridy = 1;
 	    c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.SOUTHEAST;
 		c.gridwidth = 1;
