@@ -47,13 +47,13 @@ public class PanelPerfil extends JPanel {
 		this.setLayout(new GridBagLayout());
 		this.perfil = perfil;
     	this.setBorder(	BorderFactory.createCompoundBorder(
-    			BorderFactory.createEmptyBorder(10, 10, 10, 10),
+    			BorderFactory.createEmptyBorder((int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE)),
     			BorderFactory.createCompoundBorder(
     				BorderFactory.createTitledBorder(perfil.name), 
-    				BorderFactory.createEmptyBorder(10, 10, 10, 10))));
+    				BorderFactory.createEmptyBorder((int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE)))));
     	
     	accept = new JButton("Create");
-		accept.setMinimumSize(new Dimension(100, 40));
+		accept.setMinimumSize(new Dimension((int)(100*GUIFrame.SCALE), (int)(40*GUIFrame.SCALE)));
 		accept.setEnabled(true);
     	accept.addActionListener(new ActionListener() {
 			@Override
@@ -111,12 +111,12 @@ public class PanelPerfil extends JPanel {
 	            
 	        }
 	    });
-    	this.setMaximumSize(new Dimension(750, 800));
+    	this.setMaximumSize(new Dimension((int)(750*GUIFrame.SCALE), (int)(800*GUIFrame.SCALE)));
 	    JScrollPane treeView = new JScrollPane(cambios);
-	    minSize = (cambios.getRowCount() * 25)+50;
+	    minSize = (int)(((cambios.getRowCount() * 25)+50)*GUIFrame.SCALE);
 	    if(minSize < 200) minSize = 200;
 	    if(cambios.getRowCount() < 4) minSize = 110;
-	    this.setMinimumSize(new Dimension(100, minSize));
+	    this.setMinimumSize(new Dimension((int)(100*GUIFrame.SCALE), (int)(minSize*GUIFrame.SCALE)));
 	    c.gridx = 0;
 	    c.gridy = 0;
 	    c.weighty = 1;
@@ -180,7 +180,7 @@ public class PanelPerfil extends JPanel {
 					if(!isInsert) {
 						oldVal.setText(oldVals.get(tag));
 				    	oldVal.setEditable(false);
-				    	oldVal.setPreferredSize(new Dimension(120,30));
+				    	oldVal.setPreferredSize(new Dimension((int)(120*GUIFrame.SCALE),(int)(30*GUIFrame.SCALE)));
 					}
 			    	JTextField newVal = new JTextField(newVals.get(tag));
 			    	newVal.setEditable(false);
@@ -191,7 +191,7 @@ public class PanelPerfil extends JPanel {
 				    	tempPane.add(oldVal);
 						tempPane.add(new JLabel("->"));
 					} else {
-						newVal.setPreferredSize(new Dimension(230,30));
+						newVal.setPreferredSize(new Dimension((int)(230*GUIFrame.SCALE),(int)(30*GUIFrame.SCALE)));
 					}
 			    	tempPane.add(newVal);
 			    	detail.add(tempPane);

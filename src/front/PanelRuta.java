@@ -22,10 +22,10 @@ public class PanelRuta extends JPanel {
 		ruta = def;
 		this.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		this.setBorder(BorderFactory.createTitledBorder(nombre));
-		this.setPreferredSize(new Dimension(500, 120));
+		this.setPreferredSize(new Dimension((int)(500*GUIFrame.SCALE), (int)(120*GUIFrame.SCALE)));
 		JTextField fRuta = new JTextField(ruta);
 		fRuta.setEditable(false);
-		fRuta.setPreferredSize(new Dimension(440, 37));
+		fRuta.setPreferredSize(new Dimension((int)(440*GUIFrame.SCALE), (int)(37*GUIFrame.SCALE)));
 		add = new JButton("Find");
 		add.addActionListener(new ActionListener() {
 			@Override
@@ -45,7 +45,7 @@ public class PanelRuta extends JPanel {
 				}
 			}
 		});
-		add.setPreferredSize(new Dimension(80, 30));
+		add.setPreferredSize(new Dimension((int)(80*GUIFrame.SCALE), (int)(30*GUIFrame.SCALE)));
 		this.add(fRuta);
 		this.add(add);
 	}

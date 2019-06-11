@@ -2,6 +2,7 @@ package front;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -20,10 +21,7 @@ import back.Profile;
 import back.ProfileGeneratorBack;
 
 public class GUIFrame extends JFrame {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Profile> profiles;
 	private ArrayList<PanelPerfil> profilePanes;
@@ -33,8 +31,15 @@ public class GUIFrame extends JFrame {
 	private JPanel root;
 	private PanelRight rightPane;
 	private PanelLeft leftPane;
+	public static double SCALE;
 	
 	public GUIFrame() {
+		if(Toolkit.getDefaultToolkit().getScreenSize().getWidth() < 1500) {
+			SCALE = (Toolkit.getDefaultToolkit().getScreenSize().getWidth()+300) / 1920;
+		} else {
+			SCALE = (Toolkit.getDefaultToolkit().getScreenSize().getWidth()) / 1920;
+		}
+		System.out.println(SCALE);
 		profilePanes = new ArrayList<>();
 		listaPerfiles = new DefaultListModel<>();
 		perfiles = new JList<>(listaPerfiles);
@@ -43,7 +48,7 @@ public class GUIFrame extends JFrame {
 		listaPerfiles.addElement("Pleno GEAMM");
 		listaPerfiles.addElement("Gerente GEAMM");*/
 		perfiles.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		perfiles.setPreferredSize(new Dimension(440, 600));
+		perfiles.setPreferredSize(new Dimension((int)(440*SCALE), (int)(600*SCALE)));
 		this.setTitle("SF Profile Generator");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		try {
@@ -51,8 +56,7 @@ public class GUIFrame extends JFrame {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		//frame.setLocationRelativeTo(null);
-		this.setLocation(300,100);
+		this.setLocation((int)(300*SCALE),(int)(100*SCALE));
 		this.setResizable(false);
 		leftPane = new PanelLeft(true, root, listaPerfiles, perfiles);
 		rightPane = new PanelRight(false, profilePanes);
@@ -65,7 +69,7 @@ public class GUIFrame extends JFrame {
 	private void paint(boolean leftEnabled, boolean rightEnabled) {
 		
 		root = new JPanel(new BorderLayout());
-		root.setPreferredSize(new Dimension(1300, 800));
+		root.setPreferredSize(new Dimension((int)(1300*SCALE), (int)(800*SCALE)));
 		
 		rightPane.switchViews(rightEnabled, profilePanes);
 		if(rightEnabled) {

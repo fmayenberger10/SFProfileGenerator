@@ -15,10 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class PanelRight extends JPanel {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private JPanel outp;
 	private JPanel rightJButtons;
@@ -29,29 +26,29 @@ public class PanelRight extends JPanel {
 	public PanelRight (boolean enabled, ArrayList<PanelPerfil> profilePanes) {
 		this.setLayout(new BorderLayout());
 		this.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createEmptyBorder(10, 10, 10, 10),
+				BorderFactory.createEmptyBorder((int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE)),
 				BorderFactory.createCompoundBorder(
 					BorderFactory.createTitledBorder("Output"), 
-					BorderFactory.createEmptyBorder(5, 5, 5, 5))));
+					BorderFactory.createEmptyBorder((int)(5*GUIFrame.SCALE), (int)(5*GUIFrame.SCALE), (int)(5*GUIFrame.SCALE), (int)(5*GUIFrame.SCALE)))));
 
 		acceptAll = new JButton("Accept all");
 		cancel = new JButton("Cancel");
 		outp = new JPanel(new CardLayout());
 		JPanel instructions = new JPanel();
 		instructions.setLayout(new BoxLayout(instructions, BoxLayout.PAGE_AXIS));
-		instructions.setBorder(BorderFactory.createEmptyBorder(40,20,20,20));
+		instructions.setBorder(BorderFactory.createEmptyBorder((int)(40*GUIFrame.SCALE),(int)(20*GUIFrame.SCALE),(int)(20*GUIFrame.SCALE),(int)(20*GUIFrame.SCALE)));
 		JLabel ins1 = new JLabel("<-- Select folder with profiles to be updated");
 		instructions.add(ins1);
-		instructions.add(Box.createVerticalStrut(85));
+		instructions.add(Box.createVerticalStrut((int)(85*GUIFrame.SCALE)));
 		JLabel ins2 = new JLabel("<-- Select folder with updated profiles");
 		instructions.add(ins2);
-		instructions.add(Box.createVerticalStrut(85));
+		instructions.add(Box.createVerticalStrut((int)(85*GUIFrame.SCALE)));
 		JLabel ins3 = new JLabel("<-- Select folder to store generated profiles");
 		instructions.add(ins3);
-		instructions.add(Box.createVerticalStrut(75));
+		instructions.add(Box.createVerticalStrut((int)(75*GUIFrame.SCALE)));
 		JLabel ins4 = new JLabel("<-- Insert profile names without \".profile\" (ex. Admin)");
 		instructions.add(ins4);
-		instructions.add(Box.createVerticalStrut(310));
+		instructions.add(Box.createVerticalStrut((int)(310*GUIFrame.SCALE)));
 		JLabel ins5 = new JLabel("<-- Start!");
 		instructions.add(ins5);
 		outp.add(instructions);
@@ -59,11 +56,11 @@ public class PanelRight extends JPanel {
 			switchViews(true, profilePanes);
 		}
 		this.add(outp);
-		acceptAll.setPreferredSize(new Dimension(100, 40));
-		cancel.setPreferredSize(new Dimension(100, 40));
+		acceptAll.setPreferredSize(new Dimension((int)(100*GUIFrame.SCALE), (int)(40*GUIFrame.SCALE)));
+		cancel.setPreferredSize(new Dimension((int)(100*GUIFrame.SCALE), (int)(40*GUIFrame.SCALE)));
 		
 		rightJButtons = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		rightJButtons.setMaximumSize(new Dimension(500, 100));
+		rightJButtons.setMaximumSize(new Dimension((int)(500*GUIFrame.SCALE), (int)(100*GUIFrame.SCALE)));
 		acceptAll.setEnabled(false);
 		cancel.setEnabled(false);
 		rightJButtons.add(acceptAll);
@@ -80,7 +77,7 @@ public class PanelRight extends JPanel {
 			height += pane.getHeight();
 			profiles.add(pane);
 		}
-		profiles.setPreferredSize(new Dimension(400, height));
+		profiles.setPreferredSize(new Dimension((int)(400*GUIFrame.SCALE), height));
 		spOut = new JScrollPane(profiles, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		spOut.setBorder(BorderFactory.createEmptyBorder());
 		spOut.setViewportBorder(null);

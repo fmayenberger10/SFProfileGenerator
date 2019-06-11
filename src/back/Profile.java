@@ -8,13 +8,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Profile {
-	
-	/*
-	 * niveles mapas
-	 * 1. tipos (apexClass etc)
-	 * 2. nombres (nombre del item)
-	 * 3. tags del item
-	 */
+
 	private LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, String>>> mapaTagsOrig;
 	private LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, String>>> mapaTagsCarga;
 	private LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, String>>> mapaTagsFinal;
@@ -194,10 +188,10 @@ public class Profile {
             return false;
         } finally {
            try {
-           if (null != fw) {
-        	   pw.close();
-        	   fw.close();
-           }
+	           if (null != fw) {
+	        	   pw.close();
+	        	   fw.close();
+	           }
            } catch (Exception e2) {
               e2.printStackTrace();
            }
