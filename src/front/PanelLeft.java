@@ -28,7 +28,10 @@ public class PanelLeft extends JPanel {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setPreferredSize(new Dimension((int)(500*GUIFrame.SCALE), (int)(800*GUIFrame.SCALE)));
 		this.setBorder(BorderFactory.createEmptyBorder((int)(20*GUIFrame.SCALE), (int)(20*GUIFrame.SCALE), (int)(20*GUIFrame.SCALE), (int)(20*GUIFrame.SCALE)));
-		
+
+		/*pOrigen = new PanelRuta("Origin folder", root, "/home/franz/Documents/Sulamerica/salesforce-ic/profiles/");
+		pCarga = new PanelRuta("Upload folder", root, "/home/franz/Documents/Sulamerica/profiles/profiles commit 1 vfin/");
+		pNuevos = new PanelRuta("Generated folder", root, "/home/franz/Documents/Sulamerica/profiles/nuevos/");*/
 		pOrigen = new PanelRuta("Origin folder", root, "");
 		pCarga = new PanelRuta("Upload folder", root, "");
 		pNuevos = new PanelRuta("Generated folder", root, "");

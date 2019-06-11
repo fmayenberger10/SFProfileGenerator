@@ -60,8 +60,11 @@ public class PanelPerfil extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				String nme = perfil.name + ".profile";
 				perfil.acceptAll();
-				@SuppressWarnings("unused")
 				boolean genero = perfil.generateFile(rutaNuevos + nme);
+				if(genero) {
+					accept.setText("Success!");
+					accept.setEnabled(false);
+				}
 			}
 		});
 		DefaultMutableTreeNode top = new DefaultMutableTreeNode("Changes");

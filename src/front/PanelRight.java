@@ -31,7 +31,7 @@ public class PanelRight extends JPanel {
 					BorderFactory.createTitledBorder("Output"), 
 					BorderFactory.createEmptyBorder((int)(5*GUIFrame.SCALE), (int)(5*GUIFrame.SCALE), (int)(5*GUIFrame.SCALE), (int)(5*GUIFrame.SCALE)))));
 
-		acceptAll = new JButton("Accept all");
+		acceptAll = new JButton("Create all");
 		cancel = new JButton("Cancel");
 		outp = new JPanel(new CardLayout());
 		JPanel instructions = new JPanel();
