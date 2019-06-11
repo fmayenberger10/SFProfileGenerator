@@ -29,7 +29,7 @@ public class PanelRight extends JPanel {
 				BorderFactory.createEmptyBorder((int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE)),
 				BorderFactory.createCompoundBorder(
 					BorderFactory.createTitledBorder("Output"), 
-					BorderFactory.createEmptyBorder((int)(5*GUIFrame.SCALE), (int)(5*GUIFrame.SCALE), (int)(5*GUIFrame.SCALE), (int)(5*GUIFrame.SCALE)))));
+					BorderFactory.createEmptyBorder((int)(5*GUIFrame.SCALE), (int)(0*GUIFrame.SCALE), (int)(5*GUIFrame.SCALE), (int)(5*GUIFrame.SCALE)))));
 
 		acceptAll = new JButton("Create all");
 		cancel = new JButton("Cancel");

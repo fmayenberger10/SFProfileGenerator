@@ -98,14 +98,17 @@ public class GUIFrame extends JFrame {
 				if(profiles == null || profiles.size() == 0) {
 					JOptionPane.showMessageDialog(root, "To begin press start", "Error", JOptionPane.NO_OPTION);
 				} else {
-					for(Profile prof : profiles) {
-						String nme = prof.name + ".profile";
-						prof.acceptAll();
-						@SuppressWarnings("unused")
-						boolean genero = prof.generateFile(leftPane.pNuevos.ruta + nme);
+					for(PanelPerfil prof : profilePanes) {
+						String nme = prof.perfil.name + ".profile";
+						prof.perfil.acceptAll();
+						boolean genero = prof.perfil.generateFile(leftPane.pNuevos.ruta + nme);
+						if(genero) {
+							prof.accept.setText("Success!");
+							prof.accept.setEnabled(false);
+						}
 					}
-					profilePanes = new ArrayList<>();
-					paint(true, false);
+					//profilePanes = new ArrayList<>();
+					paint(true, true);
 				}
 			}
 		});

@@ -1,5 +1,6 @@
 package front;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
@@ -10,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.BevelBorder;
 
 public class PanelLeft extends JPanel {
 	
@@ -27,7 +29,7 @@ public class PanelLeft extends JPanel {
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setPreferredSize(new Dimension((int)(500*GUIFrame.SCALE), (int)(800*GUIFrame.SCALE)));
-		this.setBorder(BorderFactory.createEmptyBorder((int)(20*GUIFrame.SCALE), (int)(20*GUIFrame.SCALE), (int)(20*GUIFrame.SCALE), (int)(20*GUIFrame.SCALE)));
+		this.setBorder(BorderFactory.createEmptyBorder((int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE)));
 
 		/*pOrigen = new PanelRuta("Origin folder", root, "/home/franz/Documents/Sulamerica/salesforce-ic/profiles/");
 		pCarga = new PanelRuta("Upload folder", root, "/home/franz/Documents/Sulamerica/profiles/profiles commit 1 vfin/");
@@ -42,7 +44,8 @@ public class PanelLeft extends JPanel {
 		sp = new JScrollPane(perfiles, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		sp.setPreferredSize(new Dimension((int)(460*GUIFrame.SCALE), (int)(450*GUIFrame.SCALE)));
 		sp.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createTitledBorder("Profiles"), 
-				BorderFactory.createEmptyBorder((int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE))));
+				BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder((int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE)),
+						BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.WHITE, new Color(200,200,200)))));
 
 		leftJButtons = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		leftJButtons.setMaximumSize(new Dimension((int)(500*GUIFrame.SCALE), (int)(100*GUIFrame.SCALE)));

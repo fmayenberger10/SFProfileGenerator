@@ -25,7 +25,7 @@ public class PanelRuta extends JPanel {
 		this.setPreferredSize(new Dimension((int)(500*GUIFrame.SCALE), (int)(120*GUIFrame.SCALE)));
 		JTextField fRuta = new JTextField(ruta);
 		fRuta.setEditable(false);
-		fRuta.setPreferredSize(new Dimension((int)(440*GUIFrame.SCALE), (int)(37*GUIFrame.SCALE)));
+		fRuta.setPreferredSize(new Dimension((int)(460*GUIFrame.SCALE), (int)(35*GUIFrame.SCALE)));
 		add = new JButton("Find");
 		add.addActionListener(new ActionListener() {
 			@Override
