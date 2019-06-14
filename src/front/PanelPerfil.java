@@ -3,6 +3,7 @@ package front;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -17,8 +18,10 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.JTree;
+import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.JLabel;
 import javax.swing.event.TreeSelectionEvent;
@@ -117,11 +120,12 @@ public class PanelPerfil extends JPanel {
 	    });
 	    JScrollPane treeView = new JScrollPane(cambios);
 	    treeView.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.WHITE, new Color(200,200,200)));
-	    minSize = (int)(((cambios.getRowCount() * 25)+50)*GUIFrame.SCALE);
-	    if(minSize < 200) minSize = 200;
+	    minSize = (int)(((cambios.getRowCount() * 20)+90)*GUIFrame.SCALE);
+	    if(minSize < 150) minSize = 150;
 	    if(cambios.getRowCount() < 4) minSize = 110;
+	    if(minSize > 700*GUIFrame.SCALE) minSize = (int)(700*GUIFrame.SCALE);
 	    this.setMinimumSize(new Dimension((int)(100*GUIFrame.SCALE), (int)(minSize*GUIFrame.SCALE)));
-    	this.setMaximumSize(new Dimension((int)(750*GUIFrame.SCALE), (int)(minSize*GUIFrame.SCALE)));
+    	this.setMaximumSize(new Dimension((int)(800*GUIFrame.SCALE), (int)(minSize*GUIFrame.SCALE)));
 	    c.gridx = 0;
 	    c.gridy = 0;
 	    c.weighty = 1;
@@ -187,15 +191,21 @@ public class PanelPerfil extends JPanel {
 				JLabel nombre = new JLabel();
 				if(node.toString().equals("layoutAssignments")) {
 					String[] partes = node.getChildAt(i).toString().split("\\|");
-					if(partes.length == 4) {
-						tempPane.add(new JLabel(partes[1]));
+					JSeparator separator = new JSeparator(SwingConstants.HORIZONTAL);
+					JPanel separatorPane = new JPanel();
+					separatorPane.setLayout(new BoxLayout(separatorPane, BoxLayout.PAGE_AXIS));
+					separatorPane.add(Box.createVerticalStrut(25));
+					separatorPane.add(separator);
+					tempPane.add(separatorPane);
+					if(partes.length == 4 && !(partes[3].isEmpty() || partes[3].equals("null"))) {
+						tempPane.add(new JLabel(trimLabel((int)(400*GUIFrame.SCALE), partes[1])));
 						num++;
-						nombre.setText(partes[3]);
+						nombre.setText(trimLabel((int)(400*GUIFrame.SCALE),partes[3]));
 					} else {
-						nombre.setText(partes[1]);
+						nombre.setText(trimLabel((int)(400*GUIFrame.SCALE),partes[1]));
 					}
 				} else {
-					nombre.setText(node.getChildAt(i).toString());
+					nombre.setText(trimLabel((int)(390*GUIFrame.SCALE), node.getChildAt(i).toString()));
 				}
 				tempPane.add(nombre);
 				num++;
@@ -214,9 +224,9 @@ public class PanelPerfil extends JPanel {
 						}
 					}
 				} else {
-					for(String name : oldMap.get(node.getChildAt(i).toString()).keySet()) {
+					for(String name : newMap.get(node.getChildAt(i).toString()).keySet()) {
 						JPanel vals = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-						if(!oldMap.get(node.getChildAt(i).toString()).get(name).equals(node.getChildAt(i).toString())) {
+						if(!newMap.get(node.getChildAt(i).toString()).get(name).equals(node.getChildAt(i).toString())) {
 							JLabel tag = new JLabel(name);
 							JTextField oldVal = new JTextField(oldMap.get(node.getChildAt(i).toString()).get(name));
 					    	oldVal.setEditable(false);
@@ -236,8 +246,8 @@ public class PanelPerfil extends JPanel {
 			}
 			JScrollPane sp = new JScrollPane(tempPane, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 			detail.add(sp);
-			if(num*50 < minSize-100) {
-				detail.add(Box.createVerticalStrut((int)(minSize-100-(num*50*GUIFrame.SCALE))));
+			if(num*40*GUIFrame.SCALE < minSize-100) {
+				detail.add(Box.createVerticalStrut((int)(minSize-100-(num*40*GUIFrame.SCALE))));
 			}
 		} else {
 			int num = 0;
@@ -275,9 +285,24 @@ public class PanelPerfil extends JPanel {
 			}
 			JScrollPane sp = new JScrollPane(tempPane, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 			detail.add(sp);
-			if(num*50 < minSize-100) {
-				detail.add(Box.createVerticalStrut((int)(minSize-100-(num*50*GUIFrame.SCALE))));
+			if(num*48*GUIFrame.SCALE < minSize-100) {
+				detail.add(Box.createVerticalStrut((int)(minSize-100-(num*48*GUIFrame.SCALE))));
 			}
 		}
+	}
+	
+	private String trimLabel(int length, String str) {
+		Graphics g = this.getGraphics();
+		boolean cortado = false;
+		int width = g.getFontMetrics().stringWidth(str);
+		while(width > length - g.getFontMetrics().stringWidth("[...]")) {
+			cortado = true;
+			str = str.substring(0, str.length()-1);
+			width = g.getFontMetrics().stringWidth(str);
+		} 
+		if(cortado) {
+			str += "[...]";
+		}
+		return str;
 	}
 }

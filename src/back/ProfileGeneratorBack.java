@@ -209,7 +209,7 @@ public class ProfileGeneratorBack {
 		LinkedHashMap<String, LinkedHashMap<String, Boolean>> mapaTagsCambios = new LinkedHashMap<>();
 		for(String tipo : mapaTagsCarga.keySet()) {
 			for(String nombre : mapaTagsCarga.get(tipo).keySet()) {
-				
+				//System.out.println(tipo + ": " + nombre);
 				LinkedHashMap<String, String> newVals = mapaTagsCarga.get(tipo).get(nombre);
 				
 				if(mapaTagsOrig.get(tipo).get(nombre) == null) {
@@ -226,7 +226,8 @@ public class ProfileGeneratorBack {
 					LinkedHashMap<String, String> oldVals = mapaTagsOrig.get(tipo).get(nombre);
 					boolean changed = false;
 					for(String tag : newVals.keySet()) {
-						if(!oldVals.get(tag).equals(newVals.get(tag))) {
+						//System.out.println("\t" + tag + " | old: " + oldVals.get(tag) + " | new: " + newVals.get(tag));
+						if(oldVals.get(tag) == null || !oldVals.get(tag).equals(newVals.get(tag))) {
 							//es cambio
 							changed = true;
 						}

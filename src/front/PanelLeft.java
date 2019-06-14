@@ -28,7 +28,7 @@ public class PanelLeft extends JPanel {
 	public PanelLeft (boolean enabled, JPanel root, DefaultListModel<String> listaPerfiles, JList<String> perfiles) {
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setPreferredSize(new Dimension((int)(500*GUIFrame.SCALE), (int)(800*GUIFrame.SCALE)));
+		this.setPreferredSize(new Dimension((int)(450*GUIFrame.SCALE), (int)(800*GUIFrame.SCALE)));
 		this.setBorder(BorderFactory.createEmptyBorder((int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE)));
 
 		/*pOrigen = new PanelRuta("Origin folder", root, "/home/franz/Documents/Sulamerica/salesforce-ic/profiles/");
@@ -42,7 +42,7 @@ public class PanelLeft extends JPanel {
 		this.add(pNuevos);
 		
 		sp = new JScrollPane(perfiles, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		sp.setPreferredSize(new Dimension((int)(460*GUIFrame.SCALE), (int)(450*GUIFrame.SCALE)));
+		//sp.setPreferredSize(new Dimension((int)(460*GUIFrame.SCALE), (int)(450*GUIFrame.SCALE)));
 		sp.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createTitledBorder("Profiles"), 
 				BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder((int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE), (int)(10*GUIFrame.SCALE)),
 						BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.WHITE, new Color(200,200,200)))));
@@ -64,6 +64,6 @@ public class PanelLeft extends JPanel {
 		this.add(sp);
 		
 		this.add(leftJButtons);
-		perfiles.setPreferredSize(new Dimension((int)(450*GUIFrame.SCALE), (int)(400*GUIFrame.SCALE)));
+		//perfiles.setPreferredSize(new Dimension((int)(450*GUIFrame.SCALE), (int)(400*GUIFrame.SCALE)));
 	}
 }
