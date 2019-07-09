@@ -25,7 +25,7 @@ public class GUIFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Profile> profiles;
 	private ArrayList<PanelPerfil> profilePanes;
-	public DefaultListModel<String> listaPerfiles;
+	public static DefaultListModel<String> listaPerfiles;
 	public JList<String> perfiles;
 	
 	private JPanel root;
@@ -89,6 +89,27 @@ public class GUIFrame extends JFrame {
 		root.add(rightPane);
 		this.add(root);
 		this.pack();
+	}
+	
+	public static void setProfilesFromDirectory(String ruta, JPanel root) {
+		try {
+			File f = new File(ruta);
+			File[] lista = f.listFiles();
+			int profs = 0;
+			listaPerfiles.removeAllElements();
+			for(File file : lista) {
+				String nombre = file.getName();
+				if(nombre.endsWith("profile")) {
+					profs++;
+					listaPerfiles.addElement(nombre.split("\\.(?=[^\\.]+$)")[0]);
+				}
+			}
+			if(profs == 0) throw new Exception();
+			
+			System.out.println(profs);
+		} catch(Exception e) {
+			JOptionPane.showMessageDialog(root, "No suitable profiles found on folder", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	private void setActionListeners() {

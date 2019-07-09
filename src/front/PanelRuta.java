@@ -16,6 +16,7 @@ public class PanelRuta extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	public String ruta;
+	JTextField fRuta;
 	JButton add;
 	
 	public PanelRuta(String nombre, JPanel root, String def) {
@@ -24,7 +25,7 @@ public class PanelRuta extends JPanel {
 		this.setBorder(BorderFactory.createTitledBorder(nombre));
 		this.setPreferredSize(new Dimension((int)(500*GUIFrame.SCALE), (int)(110*GUIFrame.SCALE)));
 		this.setMaximumSize(new Dimension((int)(500*GUIFrame.SCALE), (int)(90*GUIFrame.SCALE)));
-		JTextField fRuta = new JTextField(ruta);
+		fRuta = new JTextField(ruta);
 		fRuta.setEditable(false);
 		fRuta.setPreferredSize(new Dimension((int)(410*GUIFrame.SCALE), (int)(35*GUIFrame.SCALE)));
 		add = new JButton("Find");
@@ -43,6 +44,9 @@ public class PanelRuta extends JPanel {
 						ruta += "/";
 					}
 					fRuta.setText(ruta);
+					if(nombre.equals("Upload folder")) {
+						GUIFrame.setProfilesFromDirectory(ruta, root);
+					}
 				}
 			}
 		});
