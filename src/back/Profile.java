@@ -136,12 +136,21 @@ public class Profile {
 				mapaTagsFinal.put(type, new LinkedHashMap<>());
 			}
 			for(String name : mapaTagsOrig.get(type).keySet()) {
-				if(mapaTagsCambiosAceptados.get(type) != null 
-						&& mapaTagsCambiosAceptados.get(type).get(name) != null 
-						&& mapaTagsCambiosAceptados.get(type).get(name)) {
+				mapaTagsFinal.get(type).put(name, mapaTagsOrig.get(type).get(name));
+			}
+		}
+		for(String type: mapaTagsCambiosAceptados.keySet()) {
+			System.out.println(type);
+			if(!mapaTagsFinal.containsKey(type)) {
+				mapaTagsFinal.put(type, new LinkedHashMap<>());
+			}
+			for(String name : mapaTagsCambiosAceptados.get(type).keySet()) {
+				if(mapaTagsCambiosAceptados.get(type).get(name)) {
 					mapaTagsFinal.get(type).put(name, mapaTagsCarga.get(type).get(name));
 				} else {
-					mapaTagsFinal.get(type).put(name, mapaTagsOrig.get(type).get(name));
+					if(mapaTagsOrig.get(type).get(name) != null) {
+						mapaTagsFinal.get(type).put(name, mapaTagsOrig.get(type).get(name));
+					}
 				}
 			}
 		}
