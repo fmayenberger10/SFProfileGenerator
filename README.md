@@ -1,4 +1,4 @@
-# SFProfileGenerator
+# SFProfileGenerator v2.3
 
 Auto-merge permissions for Salesforce profiles, supports all tags as of API 46.
 
